@@ -25,7 +25,7 @@ const getChartDefaultProps = (
   userProps: ChartConfig,
   customConfig = commonDefaultProps
 ) => {
-  if (!userProps?.container?.height) {
+  if (!userProps?.container?.height && !userProps?.container?.aspect) {
     customConfig.container.aspect = defaultContainerAspect
   }
 
