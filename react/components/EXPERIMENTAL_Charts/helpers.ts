@@ -1,7 +1,7 @@
 import mergeBase from 'lodash/merge'
 
 import { ChartConfig, LineProps, BarProps } from './types'
-import { commonDefaultProps } from './commonProps'
+import { commonDefaultProps, defaultContainerAspect } from './commonProps'
 import { defaultProps as defaultLineProps } from './LineChart/constants'
 import { defaultProps as defaultBarProps } from './BarChart/constants'
 
@@ -24,9 +24,15 @@ const getRangeOfZAxis = (key: string | number, data: object[]) => {
 const getChartDefaultProps = (
   userProps: ChartConfig,
   customConfig = commonDefaultProps
-) => ({
-  configs: merge(merge(commonDefaultProps, customConfig), userProps),
-})
+) => {
+  if (!userProps?.container?.height) {
+    customConfig.container.aspect = defaultContainerAspect
+  }
+
+  return {
+    configs: merge(merge(commonDefaultProps, customConfig), userProps),
+  }
+}
 
 const getLineDefaultProps = (
   userProps: LineProps
