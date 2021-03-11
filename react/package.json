@@ -12,6 +12,7 @@
     "react-select": "^2.1.2",
     "react-sticky": "^6.0.3",
     "react-virtualized": "^9.19.1",
+    "recompose": "^0.30.0",
     "use-media": "^1.4.0",
     "uuid": "^3.3.2",
     "vtex-tachyons": "^2.10.0"

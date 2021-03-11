@@ -105,7 +105,7 @@ class Pagination extends PureComponent {
             </div>
           )}
 
-          <div className="flex flex-row pt5 items-center">
+          <div className="flex flex-row pt5 items-center vtex-customPaginationContainer">
             <PageIndicator
               currentItemFrom={currentItemFrom}
               itemTo={itemTo}

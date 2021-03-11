@@ -24,6 +24,8 @@ const loaderSize = {
 }
 
 const propTypes = {
+  className: PropTypes.string,
+  labelClassName: PropTypes.string,
   /** Button size  */
   size: PropTypes.oneOf(Object.values(SIZE)),
   /** Button prominence variation */
@@ -122,7 +124,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
   const horizontalPadding = iconOnly ? 1 : 2
   const horizontalCompensation = `nr${horizontalPadding} nl${horizontalPadding} `
 
-  const classes = classNames(
+  let classes = classNames(
     'vtex-button bw1 ba fw5 v-mid relative pa0 br2 bn',
     horizontalCompensation,
     {
@@ -144,7 +146,7 @@ const ButtonPlain: FunctionComponent<Props> = props => {
     { 'inline-flex items-center no-underline': href }
   )
 
-  const labelClasses = classNames(
+  let labelClasses = classNames(
     'flex items-center justify-center h-100 pv1 ttn ',
     `ph${horizontalPadding}`,
     { nowrap: noWrap }
@@ -164,6 +166,15 @@ const ButtonPlain: FunctionComponent<Props> = props => {
   }
 
   const Element = href ? 'a' : 'button'
+
+  if (props.className) {
+    classes += ` ${props.className} `
+  }
+
+  if (props.labelClassName) {
+    labelClasses += ` ${props.labelClassName} `
+  }
+
 
   return (
     <Element
@@ -216,6 +227,8 @@ ButtonPlain.defaultProps = {
   icon: false,
   type: 'button',
   isLoading: false,
+  className: '',
+  labelClassName: '',
 }
 
 ButtonPlain.propTypes = propTypes

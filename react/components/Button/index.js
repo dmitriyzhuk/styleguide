@@ -63,9 +63,9 @@ class Button extends Component {
     let loaderSize = 15
     let horizontalPadding = 0
 
-    classes += !isGrouped ? 'br2 ' : ''
-    classes += isFirstOfGroup ? 'br2 br--left ' : ''
-    classes += isLastOfGroup ? 'br2 br--right ' : ''
+    classes += !isGrouped ? 'br-pill ' : ''
+    classes += isFirstOfGroup ? 'br-pill br--left ' : ''
+    classes += isLastOfGroup ? 'br-pill br--right ' : ''
 
     switch (size) {
       case 'small':
@@ -125,6 +125,14 @@ class Button extends Component {
             classes += 'bg-disabled b--muted-5 c-on-disabled '
           } else {
             classes += primaryEnabledClasses
+          }
+          break
+        }
+        case 'inverted-primary': {
+          if (disabled) {
+            classes += 'bg-disabled b--muted-5 c-on-disabled '
+          } else {
+            classes += 'bg-white b--action-primary c-action-primary hover-bg-white hover-b--action-primary hover-c-action-primary'
           }
           break
         }
@@ -204,6 +212,14 @@ class Button extends Component {
       style.zIndex = 2
     }
 
+    if (this.props.className) {
+      classes += ` ${this.props.className} `
+    }
+
+    if (this.props.labelClassName) {
+      labelClasses += ` ${this.props.labelClassName} `
+    }
+
     const linkModeProps = {
       target,
       rel,
@@ -218,7 +234,7 @@ class Button extends Component {
         id={this.props.id}
         data-testid={this.props.testId}
         autoFocus={iconOnly ? undefined : this.props.autoFocus}
-        disabled={iconOnly ? undefined : disabled}
+        disabled={iconOnly ? undefined : this.props.disabled}
         name={iconOnly ? undefined : this.props.name}
         value={iconOnly ? undefined : this.props.value}
         tabIndex={tabIndex}
@@ -283,6 +299,8 @@ Button.defaultProps = {
 Button.propTypes = {
   /** Button size  */
   size: PropTypes.oneOf(['small', 'regular', 'large']),
+  className: PropTypes.string,
+  labelClassName: PropTypes.string,
   /** Button prominence variation */
   variation: PropTypes.oneOf([
     'primary',

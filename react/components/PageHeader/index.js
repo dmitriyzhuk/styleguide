@@ -1,22 +1,24 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-
 import ArrowBack from '../icon/ArrowBack'
 import ButtonPlain from '../ButtonPlain'
+import {compose} from 'recompose'
+import {withCssHandles} from 'vtex.css-handles'
 
+const CSS_HANDLES = ['pageHeader', 'blackLinkLabel', 'backLink', 'headerTitle']
 class PageHeader extends PureComponent {
   handleClick = e => {
     this.props.onLinkClick && this.props.onLinkClick(e)
   }
 
   render() {
-    const { linkLabel, children, subtitle } = this.props
+    const { linkLabel, children, subtitle, handles} = this.props
 
     return (
-      <div className="vtex-pageHeader__container pa5 pa7-ns">
+      <div className={`vtex-pageHeader__container ${handles.pageHeader} pa5 pa7-ns`}>
         {linkLabel && (
-          <div className="vtex-pageHeader-link__container mb3">
-            <ButtonPlain onClick={this.handleClick}>
+          <div className={`vtex-pageHeader-link__container mb3`}>
+            <ButtonPlain className={handles.backLink} labelClassName={handles.backLinkLabel} onClick={this.handleClick}>
               <ArrowBack color="currentColor" />
               <span className="ml3 ttu t-action--small">{linkLabel}</span>
             </ButtonPlain>
@@ -26,7 +28,7 @@ class PageHeader extends PureComponent {
         <div
           className={`c-on-base flex flex-wrap flex-row justify-between
             ${linkLabel ? 'mt0' : 'mt7'}`}>
-          <div className="vtex-pageHeader__title t-heading-2 order-0 flex-grow-1">
+          <div className={`vtex-pageHeader__title t-heading-2 order-0 flex-grow-1 ${handles.headerTitle}`}>
             {this.props.title}
           </div>
           {children && (
@@ -58,6 +60,7 @@ PageHeader.propTypes = {
   linkLabel: PropTypes.node,
   onLinkClick: PropTypes.func,
   children: PropTypes.node,
+  handles: PropTypes.any
 }
 
-export default PageHeader
+export default compose(withCssHandles(CSS_HANDLES))(PageHeader)

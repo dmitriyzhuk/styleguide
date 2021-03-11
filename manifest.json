@@ -2,7 +2,7 @@
   "vendor": "vtex",
   "name": "styleguide",
   "title": "VTEX Styleguide",
-  "version": "9.135.3",
+  "version": "9.134.1",
   "description": "The VTEX Styleguide components for the Render framework",
   "builders": {
     "react": "3.x"
@@ -16,5 +16,8 @@
     "smartcheckout"
   ],
   "settingsSchema": {},
-  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema",
+  "dependencies": {
+    "vtex.css-handles": "1.x"
+  }
 }

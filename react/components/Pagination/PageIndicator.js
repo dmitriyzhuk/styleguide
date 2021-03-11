@@ -10,7 +10,7 @@ function PageIndicator({
   testId,
 }) {
   return (
-    <div className="c-muted-2 t-small" data-testid={testId}>
+    <div className="c-muted-2 t-small vtex-customPaginationText" data-testid={testId}>
       {`${currentItemFrom} - ${itemTo} `}
       {textOf} {totalItems} {itemLabel}
     </div>
